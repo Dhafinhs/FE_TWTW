@@ -5,7 +5,7 @@ function Leaderboard() {
   const [leaders, setLeaders] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/students/leaderboard").then((res) => {
+    axios.get("https://betwtw-production.up.railway.app/students/leaderboard").then((res) => {
       setLeaders(res.data);
     });
   }, []);

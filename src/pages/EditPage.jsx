@@ -10,7 +10,7 @@ function EditPage() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:3001/students/name/${name}`, {
+      await axios.put(`https://betwtw-production.up.railway.app/students/name/${name}`, {
         newName: name,
         twtw_count: parseInt(count),
       });

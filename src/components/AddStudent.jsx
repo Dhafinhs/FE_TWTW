@@ -7,7 +7,7 @@ function AddStudent() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:3001/students", {
+    await axios.post("https://betwtw-production.up.railway.app/students", {
       name,
       twtw_count: count,
     });

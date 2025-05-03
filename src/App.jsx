@@ -15,7 +15,7 @@ function App() {
   const targetPerStudent = 40;
 
   useEffect(() => {
-    axios.get("http://localhost:3001/students").then((response) => {
+    axios.get("https://betwtw-production.up.railway.app/students").then((response) => {
       const data = response.data;
       const belum = data.filter((s) => s.twtw_count < targetPerStudent).length;
       const selesai = data.filter((s) => s.twtw_count >= targetPerStudent).length;
