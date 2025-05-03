@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-gray-100 font-sans flex flex-col">
-      <nav className="sticky top-0 z-50 w-full bg-gray-800 border-b border-orange-400 shadow-lg p-4 flex justify-between items-center">
+      <nav className="sticky top-0 z-50 w-full bg-black shadow-lg p-4 flex justify-between items-center">
         {/* Left: Logo */}
         <div className="flex items-center gap-3">
           <img src={bannerImg} alt="Banner" className="h-10 w-auto rounded" />
