@@ -6,7 +6,7 @@ function SelesaiPage() {
   const targetPerStudent = 40;
 
   useEffect(() => {
-    axios.get("http://localhost:3001/students").then((response) => {
+    axios.get("https://betwtw-production.up.railway.app/students").then((response) => {
       setStudents(response.data.filter((s) => s.twtw_count >= targetPerStudent));
     });
   }, []);
