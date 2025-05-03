@@ -1,9 +1,6 @@
 import { Routes, Route, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import Home from "./pages/Home";
 import SelesaiPage from "./pages/SelesaiPage";
 import EditPage from "./pages/EditPage";
@@ -23,9 +20,13 @@ function App() {
     });
   }, []);
 
+  const total = counts.belum + counts.selesai;
+  const percent = total > 0 ? Math.round((counts.selesai / total) * 100) : 0;
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-gray-100 font-sans flex flex-col">
-      <nav className="sticky top-0 z-50 w-full bg-gray-800 border-b border-orange-400 shadow-md p-4 flex justify-between items-center">
+      <nav className="sticky top-0 z-50 w-full bg-gray-800 border-b border-orange-400 shadow-lg p-4 flex justify-between items-center">
+        {/* Left: Logo */}
         <div className="flex items-center gap-3">
           <img src={bannerImg} alt="Banner" className="h-10 w-auto rounded" />
           <Link to="/" className="text-xl font-bold text-orange-400">
@@ -33,20 +34,27 @@ function App() {
           </Link>
         </div>
 
+        {/* Center: Progress Bar */}
+        <div className="hidden md:flex flex-col items-center w-40">
+          <span className="text-xs text-gray-300 mb-1">Progress Komunal</span>
+          <div className="w-full bg-gray-700 rounded h-2">
+            <div
+              className="bg-green-400 h-2 rounded transition-all duration-500"
+              style={{ width: `${percent}%` }}
+            />
+          </div>
+          <span className="text-xs text-gray-300 mt-1">{percent}%</span>
+        </div>
+
+        {/* Right: Nav Buttons */}
         <div className="flex gap-4">
-          <Link
-            to="/"
-            className="relative bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition"
-          >
+          <Link to="/" className="relative bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition">
             Belum Selesai
             <span className="absolute -top-2 -right-2 bg-red-500 text-xs rounded-full px-2">
               {counts.belum}
             </span>
           </Link>
-          <Link
-            to="/selesai"
-            className="relative bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition"
-          >
+          <Link to="/selesai" className="relative bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition">
             Sudah Selesai
             <span className="absolute -top-2 -right-2 bg-red-500 text-xs rounded-full px-2">
               {counts.selesai}
@@ -63,11 +71,9 @@ function App() {
         </Routes>
       </main>
 
-      <footer className="w-full text-center text-sm text-gray-400 py-4">
+      <footer className="w-full text-center text-sm text-gray-400 py-4 shadow-inner">
         © {new Date().getFullYear()} Dhafin 2306267145
       </footer>
-
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </div>
   );
 }
